@@ -5,6 +5,9 @@ import Footer from './components/Footer.jsx'
 import Home from './pages/Home.jsx'
 import Productos from './pages/Productos.jsx'
 import Detalle from './pages/Detalle.jsx'
+import Carrito from './pages/Carrito.jsx'
+import Login from './pages/Login.jsx'
+import Registro from './pages/Registro.jsx'
 import { initDatos } from './datos.js'
 
 export default function App() {
@@ -20,6 +23,9 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/productos" element={<Productos />} />
           <Route path="/producto/:codigo" element={<Detalle />} />
+          <Route path="/carrito" element={<Carrito />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/registro" element={<Registro />} />
         </Routes>
       </main>
       <Footer />
