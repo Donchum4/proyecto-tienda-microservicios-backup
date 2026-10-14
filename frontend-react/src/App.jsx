@@ -8,6 +8,10 @@ import Detalle from './pages/Detalle.jsx'
 import Carrito from './pages/Carrito.jsx'
 import Login from './pages/Login.jsx'
 import Registro from './pages/Registro.jsx'
+import Blog from './pages/Blog.jsx'
+import BlogDetalle from './pages/BlogDetalle.jsx'
+import Nosotros from './pages/Nosotros.jsx'
+import Contacto from './pages/Contacto.jsx'
 import { initDatos } from './datos.js'
 
 export default function App() {
@@ -26,6 +30,10 @@ export default function App() {
           <Route path="/carrito" element={<Carrito />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogDetalle />} />
+          <Route path="/nosotros" element={<Nosotros />} />
+          <Route path="/contacto" element={<Contacto />} />
         </Routes>
       </main>
       <Footer />
