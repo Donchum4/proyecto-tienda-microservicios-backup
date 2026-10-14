@@ -12,6 +12,11 @@ import Blog from './pages/Blog.jsx'
 import BlogDetalle from './pages/BlogDetalle.jsx'
 import Nosotros from './pages/Nosotros.jsx'
 import Contacto from './pages/Contacto.jsx'
+import Admin from './pages/Admin.jsx'
+import AdminProductos from './pages/AdminProductos.jsx'
+import AdminProductoForm from './pages/AdminProductoForm.jsx'
+import AdminUsuarios from './pages/AdminUsuarios.jsx'
+import AdminUsuarioForm from './pages/AdminUsuarioForm.jsx'
 import { initDatos } from './datos.js'
 
 export default function App() {
@@ -34,6 +39,13 @@ export default function App() {
           <Route path="/blog/:slug" element={<BlogDetalle />} />
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/contacto" element={<Contacto />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/productos" element={<AdminProductos />} />
+          <Route path="/admin/productos/nuevo" element={<AdminProductoForm />} />
+          <Route path="/admin/productos/:codigo" element={<AdminProductoForm />} />
+          <Route path="/admin/usuarios" element={<AdminUsuarios />} />
+          <Route path="/admin/usuarios/nuevo" element={<AdminUsuarioForm />} />
+          <Route path="/admin/usuarios/:run" element={<AdminUsuarioForm />} />
         </Routes>
       </main>
       <Footer />
