@@ -6,25 +6,27 @@ import Tarjeta from '../components/Tarjeta.jsx'
 export default function Home() {
   const [destacados, setDestacados] = useState([])
   const [noticias, setNoticias] = useState([])
+  const [foto, setFoto] = useState(0)
   const filaRef = useRef(null)
+
+  const fotos = [
+    "/img/banner-principal.png",
+    "/img/banner2.png",
+    "/img/banner3.png",
+    "/img/carrusel1.png"
+  ]
 
   useEffect(() => {
     const prods = getColeccion(KEYS.productos).filter(p => p.estado === "Activo" && p.destacado)
     setDestacados(prods)
     setNoticias(getColeccion(KEYS.blog).slice(0, 3))
+  }, [])
 
-    function onScroll() {
-      const img = document.querySelector(".hero-intro-img")
-      const ind = document.getElementById("scrollIndicator")
-      if (img) {
-        img.style.transform = "translateY(" + window.scrollY * 0.35 + "px) scale(1.08)"
-      }
-      if (ind) {
-        ind.style.opacity = window.scrollY > 30 ? "0" : "1"
-      }
-    }
-    window.addEventListener("scroll", onScroll)
-    return () => window.removeEventListener("scroll", onScroll)
+  useEffect(() => {
+    const t = setInterval(() => {
+      setFoto(f => (f + 1) % fotos.length)
+    }, 5000)
+    return () => clearInterval(t)
   }, [])
 
   function agregar(codigo) {
@@ -54,11 +56,35 @@ export default function Home() {
     <>
       <section className="hero-intro">
         <div className="hero-intro-bg">
-          <img src="/img/banner-principal.png" alt="FreshFits" className="hero-intro-img" />
+          {fotos.map((src, i) => (
+            <img
+              key={src}
+              src={src}
+              alt="FreshFits"
+              className="hero-intro-img"
+              style={{ opacity: i === foto ? 1 : 0, transition: "opacity 0.8s" }}
+            />
+          ))}
           <div className="hero-intro-overlay"></div>
         </div>
         <div className="hero-intro-content">
           <h1 className="hero-intro-title">FRESH <span>FITS</span></h1>
+          <div className="d-flex gap-2 justify-content-center mt-3">
+            <button className="btn btn-sm btn-light" onClick={() => setFoto((foto - 1 + fotos.length) % fotos.length)}>{"<"}</button>
+            <button className="btn btn-sm btn-light" onClick={() => setFoto((foto + 1) % fotos.length)}>{">"}</button>
+          </div>
+          <div className="d-flex gap-2 justify-content-center mt-2">
+            {fotos.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setFoto(i)}
+                style={{
+                  width: 10, height: 10, borderRadius: "50%", border: "none",
+                  background: i === foto ? "#fff" : "rgba(255,255,255,0.4)"
+                }}
+              />
+            ))}
+          </div>
         </div>
         <div className="scroll-indicator" id="scrollIndicator">
           <span className="scroll-text">scroll</span>
